@@ -41,7 +41,7 @@ public class UserServiceImp implements UserService{
     }
 
     @Transactional
-    public void editUser(User user) {
+    public void updateUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
@@ -55,7 +55,7 @@ public class UserServiceImp implements UserService{
     }
 
     @Transactional
-    public void add(User user) {
+    public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 //        user.setRoles(Collections.singleton(new Role(1, "ROLE_USER")));
         userRepository.save(user);

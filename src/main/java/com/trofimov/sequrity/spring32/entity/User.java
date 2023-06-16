@@ -2,8 +2,6 @@ package com.trofimov.sequrity.spring32.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
@@ -25,6 +23,9 @@ public class User implements UserDetails {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "age")
+    private int age;
 
     @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable (name = "users_roles",
@@ -78,6 +79,14 @@ public class User implements UserDetails {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -110,5 +119,22 @@ public class User implements UserDetails {
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    public String getRolesAsString() {
+        boolean first = true;
+        String s = "";
+        for (Role role : getRoles()) {
+            if (!first) {
+                s += ", ";
+            }
+            s += role.toString();
+            first = false;
+        }
+        return s;
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
     }
 }
