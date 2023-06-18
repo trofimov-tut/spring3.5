@@ -49,10 +49,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-<!--                                    <th>Surname</th>-->
                                     <th>Age</th>
                                     <th>Email</th>
-<!--                                    <th>Login</th>-->
                                     <th>Role</th>
                                 </tr>
                                 </thead>
@@ -60,10 +58,8 @@
                                 <tr>
                                     <td th:text="${user.id}"></td>
                                     <td th:text="${user.name}"></td>
-<!--                                    <td th:text="${user.surname}"></td>-->
                                     <td th:text="${user.age}"></td>
                                     <td th:text="${user.email}"></td>
-<!--                                    <td th:text="${user.login}"></td>-->
                                     <td>
                                         <th:block th:each="role: ${user.roles}"
                                                   th:text="${role.name} + ' '">

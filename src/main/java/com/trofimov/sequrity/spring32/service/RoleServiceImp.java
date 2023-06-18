@@ -2,7 +2,6 @@ package com.trofimov.sequrity.spring32.service;
 
 import com.trofimov.sequrity.spring32.entity.Role;
 import com.trofimov.sequrity.spring32.repository.RoleRepository;
-import com.trofimov.sequrity.spring32.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -25,11 +24,6 @@ public class RoleServiceImp implements RoleService {
     @Override
     public Role getRole(String userRole) {
         return null;
-    }
-
-    @Override
-    public void addRole(Role role) {
-
     }
 
 }

@@ -1,21 +1,12 @@
 package com.trofimov.sequrity.spring32.service;
 
-import com.trofimov.sequrity.spring32.entity.Role;
 import com.trofimov.sequrity.spring32.entity.User;
 import com.trofimov.sequrity.spring32.repository.UserRepository;
-import com.trofimov.sequrity.spring32.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
