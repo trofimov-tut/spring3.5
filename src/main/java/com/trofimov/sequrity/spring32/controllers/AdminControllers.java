@@ -20,6 +20,11 @@ public class AdminControllers {
         this.roleService = roleService;
     }
 
+    @GetMapping("/")
+    public String login() {
+        return "redirect:/login";
+    }
+
     @GetMapping("/admin")
     public String showAdminPage(Principal principal, Model model) {
         model.addAttribute("users", userService.getAllUsers());
@@ -36,16 +41,20 @@ public class AdminControllers {
     }
 
     @PostMapping("/new")
-    public String createUser(@ModelAttribute("user") User user) {
-        getUserRoles(user);
+    public String createUser(@ModelAttribute("user") User user, @RequestParam(value = "checkedRoles") String[] result) {
+        for (String s: result) {
+            user.addRol(roleService.getRoleByName("ROLE_" + s));
+        }
         userService.saveUser(user);
         return "redirect:/admin";
     }
 
-    @PutMapping("/{id}/update")
-    public String updateUser(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("roles", roleService.getAllRoles());
-        getUserRoles(user);
+    @PostMapping("/{id}/update")
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id,
+                             @RequestParam(value = "userRolesSelector") String[] result) {
+        for (String s: result) {
+            user.addRol(roleService.getRoleByName(s));
+        }
         userService.updateUser(user);
         return "redirect:/admin";
     }
@@ -54,12 +63,6 @@ public class AdminControllers {
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
-    }
-
-    private void getUserRoles(User user) {
-        user.setRoles(user.getRoles().stream()
-                .map(role -> roleService.getRole(role.getName()))
-                .collect(Collectors.toSet()));
     }
 
 }

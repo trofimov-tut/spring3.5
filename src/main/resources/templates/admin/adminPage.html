@@ -18,9 +18,7 @@
             <span class="align-middle">with roles:</span>
             <span class="align-middle" th:text="${user.roles}"></span>
         </p>
-        <form th:action="@{/logout}" method="post">
-            <button type="submit" class="btn btn-dark text-secondary">Logout</button>
-        </form>
+        <a class="text-decoration-none font-weight-bold text-secondary" th:href="@{/logout}">Logout</a>
     </div>
 </nav>
 
@@ -89,7 +87,7 @@
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <form th:action="@{/{id}/update(id=${user.id})}"
-                                                          th:object="${user}" th:method="PUT">
+                                                          th:object="${user}" th:method="POST">
                                                         <div class="modal-body col-md text-center">
                                                             <br>
                                                             <label for="name0"><b>Name</b></label>
@@ -112,11 +110,14 @@
                                                                    class="form-control" id="password0"
                                                                    th:value="${user.password}"/>
                                                             <br>
-                                                            <label for="roles"><b>Role</b></label>
-                                                            <select multiple class="form-control form-control-sm" id="roles" name="roles" size="2" required>
-                                                                <option th:each="role: ${roles}" th:value="${role.name}" th:selected="${user.roles.contains(role)}">
-                                                                    <th:block th:text="${role.name}">
-                                                                    </th:block>
+                                                            <label for="roles">Role</label>
+                                                            <select class="form-select w-100" multiple
+                                                                    size="2"
+                                                                    id="roles"
+                                                                    name="userRolesSelector">
+                                                                <option th:each="role: ${roles}"
+                                                                        th:text="${role.toString()}"
+                                                                        selected>
                                                                 </option>
                                                             </select>
                                                             <br><br>
