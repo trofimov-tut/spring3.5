@@ -1,4 +1,4 @@
-package com.trofimov.sequrity.spring32.service.imp;
+package com.trofimov.sequrity.spring32.service;
 
 import com.trofimov.sequrity.spring32.entity.Role;
 import com.trofimov.sequrity.spring32.repository.RoleRepository;

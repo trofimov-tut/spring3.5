@@ -7,11 +7,11 @@ public interface UserService {
 
     public List<User> getAllUsers();
 
-    public void deleteUser(int id);
+    public void deleteUser(Long id);
 
     public void updateUser(User user);
 
-    public User getUserById(int id);
+    public User getUserById(Long id);
 
     public User findUserByUsername(String username);
 

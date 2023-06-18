@@ -10,6 +10,4 @@ public interface RoleService {
 
     Role getRole(String userRole);
 
-    void addRole(Role role);
-
 }

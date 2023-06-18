@@ -1,4 +1,4 @@
-package com.trofimov.sequrity.spring32.service.imp;
+package com.trofimov.sequrity.spring32.service;
 
 import com.trofimov.sequrity.spring32.entity.Role;
 import com.trofimov.sequrity.spring32.entity.User;
@@ -36,7 +36,7 @@ public class UserServiceImp implements UserService{
     }
 
     @Transactional
-    public void deleteUser(int id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
@@ -46,7 +46,7 @@ public class UserServiceImp implements UserService{
         userRepository.save(user);
     }
 
-    public User getUserById(int id) {
+    public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
@@ -57,7 +57,6 @@ public class UserServiceImp implements UserService{
     @Transactional
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        user.setRoles(Collections.singleton(new Role(1, "ROLE_USER")));
         userRepository.save(user);
     }
 

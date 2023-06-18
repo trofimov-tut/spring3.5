@@ -2,7 +2,6 @@ package com.trofimov.sequrity.spring32.util;
 
 import com.trofimov.sequrity.spring32.entity.User;
 import com.trofimov.sequrity.spring32.service.UserService;
-import com.trofimov.sequrity.spring32.service.imp.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

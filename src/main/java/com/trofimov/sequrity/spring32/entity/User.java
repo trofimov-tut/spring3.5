@@ -13,7 +13,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -27,7 +27,7 @@ public class User implements UserDetails {
     @Column(name = "age")
     private int age;
 
-    @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable (name = "users_roles",
             joinColumns = @JoinColumn (name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -63,11 +63,11 @@ public class User implements UserDetails {
         return true;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -121,20 +121,4 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public String getRolesAsString() {
-        boolean first = true;
-        String s = "";
-        for (Role role : getRoles()) {
-            if (!first) {
-                s += ", ";
-            }
-            s += role.toString();
-            first = false;
-        }
-        return s;
-    }
-
-    public void addRole(Role role) {
-        roles.add(role);
-    }
 }
