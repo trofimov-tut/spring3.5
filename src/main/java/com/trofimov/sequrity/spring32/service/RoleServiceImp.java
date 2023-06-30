@@ -23,13 +23,8 @@ public class RoleServiceImp implements RoleService {
     }
 
     @Override
-    public Role getRole(String userRole) {
-        return null;
-    }
-
-    @Override
-    public void addRole(Role role) {
-
+    public Role getRoleByName(String roleName) {
+        return roleRepository.findByName(roleName);
     }
 
 }
