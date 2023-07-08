@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title id="tab-title">Admin panel</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+        crossorigin="anonymous">
+</head>
+<body style="height: 100vh">
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" style="margin-left: 15px" id="logged-user-roles">
+      <strong></strong> with roles: <span></span>
+    </a>
+
+    <ul class="navbar-nav ml-auto mb-auto">
+      <li class="nav-item">
+
+        <form action="/logout" method="POST">
+          <button type="submit" class="btn btn-dark">Logout</button>
+        </form>
+
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <div class="col-2 p-0 pt-3">
+      <nav>
+        <div class="list-group list-group-flush" id="sidebar">
+          <button class="list-group-item list-group-item-action ripple rounded active"
+                  aria-current="true" id="admin-page-btn">Admin</button>
+          <button class="list-group-item list-group-item-action ripple rounded"
+                  aria-current="true" id="user-page-btn">User</button>
+        </div>
+      </nav>
+    </div>
+    <div class="col-10 pt-3 px-4 pb-5" style="background-color: #f8f9fa">
+      <h1 id="page-title">Admin panel</h1>
+      <div id="liveAlertPlaceholder"></div>
+
+      <section id="tabs" class="project-tab mt-3">
+        <div class="container p-0">
+
+          <div class="row">
+            <div class="col-md-12">
+
+              <!-- Navigation tabs -->
+              <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-users-table-tab" data-bs-toggle="tab"
+                     href="#nav-users-table"
+                     role="tab" aria-controls="nav-users-table" aria-selected="true">Users table</a>
+
+                  <a class="nav-item nav-link" id="nav-new-user-tab" data-bs-toggle="tab"
+                     href="#nav-new-user"
+                     role="tab" aria-controls="nav-new-user" aria-selected="false">New User</a>
+                </div>
+              </nav>
+
+              <!-- Tabs' content -->
+              <div class="tab-content border-start border-end border-bottom rounded" id="nav-tabContent">
+
+                <div class="tab-pane fade show active" id="nav-users-table"
+                     role="tabpanel"
+                     aria-labelledby="nav-users-table-tab">
+
+                  <div class="d-print-inline-block py-3 px-4 border-top border-bottom">
+                    <h5 class="m-0" id="table-title">All users</h5>
+                  </div>
+
+                  <div class="px-4 py-4 bg-white">
+                    <table class="table table-striped border-top">
+                      <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                        <th scope="col" id="th-edit">Edit</th>
+                        <th scope="col" id="th-delete">Delete</th>
+                      </tr>
+                      </thead>
+
+                      <tbody class="border-top" id="users-tbody"></tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="nav-new-user"
+                     role="tabpanel"
+                     aria-labelledby="nav-new-user-tab">
+
+                  <div class="d-print-inline-block py-3 px-4 border-top border-bottom">
+                    <h5 class="m-0">New User</h5>
+                  </div>
+
+                  <div class="py-4 bg-white d-flex justify-content-center">
+                    <form id="newUserForm">
+                      <div class="row mb-4">
+                        <label for="name" class="fw-bold text-center">Name</label>
+                        <input type="text" name="name" id="name"
+                               class="form-control">
+                      </div>
+
+                      <div class="row mb-4">
+                        <label for="age" class="fw-bold text-center">Age</label>
+                        <input type="number" name="age" id="age"
+                               class="form-control">
+                      </div>
+
+                      <div class="row mb-4">
+                        <label for="email" class="fw-bold text-center">Email</label>
+                        <input type="email" name="email" id="email"
+                               class="form-control">
+                      </div>
+
+                      <div class="row mb-4">
+                        <label for="password"
+                               class="fw-bold text-center">Password</label>
+                        <input type="password" name="password" id="password"
+                               class="form-control">
+                      </div>
+
+                      <div class="row mb-4">
+                        <label for="authorities"
+                               class="fw-bold text-center">Role</label>
+                        <select name="authorities" id="authorities"
+                                class="form-select"
+                                multiple>
+                        </select>
+                      </div>
+
+                      <div class="mb-4 d-flex justify-content-center">
+                        <input type="submit" value="Add new user" class="btn btn-lg btn-success"
+                               id="addBtn">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="modal-div"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+<script src="/js/index.js"></script>
+</body>
+</html>
