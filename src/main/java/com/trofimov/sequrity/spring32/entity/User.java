@@ -122,7 +122,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public void addRol(Role role) {
+    public void addRole(Role role) {
         Set<Role> newRoles = new HashSet<>();
         newRoles.add(role);
         setRoles(newRoles);
