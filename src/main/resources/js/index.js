@@ -11,13 +11,11 @@ const adminPageBtnEl = $('#admin-page-btn')
 const userPageBtnEl = $('#user-page-btn')
 
 class User {
-    constructor(id = 0, username = '', password = '', name = '',
+    constructor(id = 0, name = '', password = '',
                 surname = '', age = 0, email = '', roles = []) {
         this.id = id
-        this.username = username
-        this.password = password
         this.name = name
-        this.surname = surname
+        this.password = password
         this.age = age
         this.email = email
         this.roles = roles
@@ -27,8 +25,7 @@ class User {
         const data = new FormData(form)
 
         this.id = data.get('id')
-        this.name = data.get('firstName')
-        this.surname = data.get('lastName')
+        this.name = data.get('name')
         this.age = data.get('age')
         this.email = data.get('email')
         this.password = data.get('password')
@@ -329,7 +326,6 @@ function getUserTableRowTemplate(user) {
         <tr class="align-middle" data-id="${user.id}">
             <td>${user.id}</td>
             <td>${user.name}</td>
-            <td>${user.surname}</td>
             <td>${user.age}</td>
             <td>${user.email}</td>
             <td>${user.roles.map(a => a.name.replace('ROLE_', '')).join(' ')}</td>
@@ -385,20 +381,11 @@ function getModal(user, roles, type) {
                                 </div>
     
                                 <div class="row mb-4">
-                                    <label for="firstName" class="fw-bold text-center">First name</label>
+                                    <label for="name" class="fw-bold text-center">Name</label>
                                     <input type="text" id="firstName"
                                            class="form-control" 
-                                           name="firstName"
+                                           name="name"
                                            value="${user.name}"
-                                           ${disabled}>
-                                </div>
-    
-                                <div class="row mb-4">
-                                    <label for="lastName" class="fw-bold text-center">Last name</label>
-                                    <input type="text" id="lastName"
-                                           class="form-control"
-                                           name="lastName"
-                                           value="${user.surname}"
                                            ${disabled}>
                                 </div>
     
